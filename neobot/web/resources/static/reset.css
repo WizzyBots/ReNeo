@@ -1,0 +1,61 @@
+*, *::before, *::after {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+::-moz-selection {
+  color: #000;
+  background-color: #fff;
+}
+
+::selection {
+  color: #000;
+  background-color: #fff;
+}
+
+body, html {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.padded {
+  padding: 5vh 6vw;
+}
+
+a {
+  color: #275caa;
+  text-decoration-thickness: 1px;
+  -webkit-text-decoration-style: solid;
+          text-decoration-style: solid;
+}
+
+h1, h2, h3, h4, h4, h5, h6 {
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font-size: 5.4rem;
+}
+
+h2 {
+  font-size: 3rem;
+}
+
+h3 {
+  font-size: 3.6rem;
+}
+
+h4 {
+  font-size: 2.7rem;
+}
+
+h5 {
+  font-size: 1.8rem;
+}
+
+h6 {
+  font-size: 0.9rem;
+}
+/*# sourceMappingURL=reset.css.map */

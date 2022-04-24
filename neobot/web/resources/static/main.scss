@@ -1,0 +1,294 @@
+@import '_variables.scss';
+@use "sass:math";
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Raleway&family=Poppins&display=swap');
+
+
+p {
+    font-family: $poppins;
+}
+
+section {
+    height: 100vh;
+}
+
+body {
+    background-color: $bg-primary;
+}
+
+.dark-bg {
+    background: $bg-primary;
+    color: $bg-contrast-primary;
+}
+
+.bright-bg {
+    background: $bg-contrast-primary;
+    color: $bg-primary;
+}
+
+.dotted-bg {
+    @extend .dark-bg;
+    background:
+        radial-gradient($bg-contrast-secondary 1px, transparent 1%), $bg-primary;
+    background-position: 0 0;
+    background-size: $bg-dot-dist;
+}
+
+section#main {
+    position: relative;
+
+    h1 {
+        font-size: 8rem;
+        margin: 0.3rem 0rem;
+        width: fit-content;
+        border-bottom: 2px solid $bg-secondary;
+    }
+
+    p {
+        font-weight: 500;
+        font-size: 3rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.psuedo-sep {
+    clip-path: polygon(0 $skew-by, 100% 0, 100% calc(100% - #{$skew-by}), 0% 100%);
+    color: $bg-contrast-primary;
+    background-color: $bg-complement;
+    height: 85vh;
+    // height: 100%;
+    z-index: 2;
+    padding: $skew-by 6vw;
+
+    display: grid;
+    grid-template-columns: 50% 50%;
+    grid-template-areas: "image text";
+    grid-template-rows: 100%;
+
+    & > div {
+        height: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        grid-area: image;
+
+        & > img {
+            border-radius: 10px;
+            max-height: 87.5%;
+            max-width: 100%;
+            box-shadow:  15px 15px 30px #131313,
+             -15px -15px 30px #313131;
+        }
+    }
+
+    & > .sep-text-par {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-end;
+        grid-area: text;
+    }
+
+
+}
+
+bigtext {
+    font-family: $montserrat;
+    font-weight: 700;
+    font-size: 26vw;
+    opacity: 0.07;
+    color: white;
+    position: absolute;
+    bottom: 3vh;
+    left: 1vw;
+    user-select: none;
+}
+
+div h2 {
+    margin: 2rem 0rem 0.3rem 0rem;
+}
+
+footer {
+    display: grid;
+    place-items: center;
+    font-family: $rale;
+    width: 100%;
+    background-color: $bg-complement;
+    border-top: 1px solid $bg-complement;
+    color: $bg-contrast-primary;
+    padding: 1rem;
+}
+
+nav {
+    color: $bg-contrast-secondary;
+    background-color: $bg-nav;
+    width: 100%;
+    height: 64px;
+
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: 6vw 10% auto 50%;
+    grid-template-areas: "padding home freespace links";
+    place-items: center;
+
+    a {
+        color: $bg-contrast-primary;
+        text-decoration: none;
+        font-family: $rale;
+        display: inline-block;
+        padding: 0 1rem;
+    }
+
+    & > a#home {
+        grid-area: home;
+        padding: 0.3rem 0.65rem;
+        border: 1px solid #aaa;
+        text-align: center;
+        width: min-content;
+    }
+
+    & > div#links {
+        grid-area: links;
+        display: flex;
+        float: right;
+        height: 100%;
+
+        & > a {
+            display: flex;
+            align-items: center;
+            transition-delay: 50ms;
+            transition-duration: 500ms;
+            transition-property: color, background-color;
+        }
+
+        & > a:hover {
+            color: $bg-primary;
+            background-color: $bg-contrast-primary;
+        }
+    }
+
+    & > label#ham {
+        grid-area: links;
+        display: none;
+    }
+}
+
+// HamBurger menu (c) https://codepen.io/Danilo06
+label#ham {
+    display: flex;
+    flex-direction: column;
+    width: $ham-width;
+    cursor: pointer;
+
+    span {
+        background: #fff;
+        border-radius: 10px;
+        height: $ham-thick;
+        margin: $ham-margin 0;
+        transition: 400ms cubic-bezier(0.68, -0.6, 0.32, 1.6);
+    }
+
+    span:nth-of-type(1) {
+        width: 50%;
+    }
+
+    span:nth-of-type(2) {
+        width: 100%;
+    }
+
+    span:nth-of-type(3) {
+        width: 75%;
+    }
+
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    input[type="checkbox"]:checked ~ span:nth-of-type(1) {
+        transform-origin: bottom;
+        width: calc(50%);
+        transform: rotatez(45deg) translate(0.56066017177 * ($ham-width)/2 - $ham-thick/(2 * 1.41421356237), 0.35355339059 * $ham-width/2)
+    }
+
+    input[type="checkbox"]:checked~span:nth-of-type(2) {
+        transform-origin: top;
+        transform: rotatez(-45deg)
+    }
+
+    input[type="checkbox"]:checked~span:nth-of-type(3) {
+        transform-origin: bottom;
+        width: calc(50% - #{$ham-disconnect});
+        // Translate to 1st's position then go along the y=-x axis
+        transform: rotatez(45deg) translate($ham-width / (-2 * 1.41421356237) - $ham-thick/(2 * 1.41421356237) + $ham-disconnect, $ham-width / (-2 * 1.41421356237)) translate($ham-width/2, -$ham-margin);
+    }
+}
+
+.menu-sidebar {
+    transition: 500ms;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 100vw;
+}
+
+// Tablets
+@media only screen and (max-width: 1100px) {
+    bigtext {
+        left: -11vw;
+        font-size: 29vw;
+    }
+
+    nav {
+        grid-template-columns: 6vw 15% auto 30%;
+
+        & > label#ham {
+            display: flex;
+        }
+
+        & > div#links {
+            display: none;
+        }
+    }
+
+    .psuedo-sep {
+        grid-template-columns: 100%;
+        grid-template-rows: 50% 50%;
+        grid-template-areas:
+        "text"
+        "image";
+        height: 100%;
+
+        & > .sep-text-par {
+            align-items: center;
+            grid-area: text;
+        }
+
+        & > .demo {
+            justify-content: center;
+            grid-area: image;
+        }
+    }
+}
+
+// mobile
+@media only screen and (max-width: 600px) {
+    bigtext {
+        opacity: 0;
+        content: "";
+    }
+
+    h1 {
+        font-size: 4rem !important;
+    }
+
+    section#main p {
+        font-size: 1.6rem !important;
+    }
+
+    h2 {
+        font-size: 2rem !important;
+    }
+}

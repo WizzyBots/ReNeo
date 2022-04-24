@@ -1,0 +1,37 @@
+@import '_variables.scss';
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+::selection {
+    color: #000;
+    background-color: #fff;
+}
+
+body, html {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+.padded {
+    padding: 5vh 6vw;
+}
+
+a {
+    color: rgb(39, 92, 170);
+    text-decoration-thickness: 1px;
+    text-decoration-style: solid;
+}
+
+h1, h2, h3, h4, h4, h5, h6 {
+    font-family: $montserrat;
+}
+
+@for $i from 1 through 6 {
+    h#{$i} {
+        font-size: #{(7 - $i) * 0.9}rem;
+    }
+}

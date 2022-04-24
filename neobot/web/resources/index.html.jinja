@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ app["neobot.web.title"] }}</title>
+        <link rel="stylesheet" href="{{ static('reset.css') }}">
+        <link rel="stylesheet" href="{{ static('main.css') }}">
+        <script type="text/javascript">
+            function sideBar() {
+                document.querySelector("nav > div#links").classList.toggle("menu-sidebar");
+            }
+        </script>
+    </head>
+    <body>
+        <nav>
+            <a href="/" id="home">NEO<wbr/>BOT</a>
+            <div id="links">
+                <a href="/">Dashboard</a>
+                <a href="/">Info</a>
+                <a href="/">Invite</a>
+                <a href="/">Source</a>
+            </div>
+            <label for="check" id="ham">
+                <input type="checkbox" id="check" onclick="sideBar()"/>
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </nav>
+        <div class="dotted-bg">
+            <section class="padded" id="main">
+                <main>
+                    <h1>NeoBot</h1>
+                    <p>Redefining Chatbot Interactions</p>
+                </main>
+                <bigtext>neobot</bigtext>
+            </section>
+            <section>
+                <div class="psuedo-sep">
+                    <div class="demo">
+                        <img src="{{ static('neo_so_robust.png') }}">
+                    </div>
+                    <div class="sep-text-par">
+                        <div class="sep-text">
+                            <h2>Robust</h2>
+                            <p>Thoroughly tested & Designed with robustness in mind.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="padded">
+                <h2>Multipurpose</h2>
+                <p>NeoBot does a lot of stuff, but we believe NeoBot just does everything better 🤷‍♂️</p>
+            </section>
+        </div>
+        <footer>
+            <div>
+                Copyright (c) <a href="https://wizzygeek.github.io/">WizzyGeek</a>
+            </div>
+        </footer>
+    </body>
+</html>
